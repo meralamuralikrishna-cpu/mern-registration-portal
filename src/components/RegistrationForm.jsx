@@ -21,15 +21,36 @@ const RegistrationForm = () => {
     }));
   };
 
-  const handleSubmit = async(e) =>{
-    e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    if(formData.password != formData.cpassword){
-      alert("password do not match")
-      return
+    if (formData.password !== formData.cpassword) {
+      alert("Passwords do not match!");
+      return;
     }
 
-  }
+    try {
+      const response = await fetch("http://localhost:5050/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert(data.message || "Registration successful!");
+        handleReset();
+      } else {
+        alert(data.error || "Registration failed. Please check your inputs.");
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      alert("Could not connect to the backend server. Please make sure node server.js is running.");
+    }
+  };
 
   const handleReset = () =>{
     setFormData({
