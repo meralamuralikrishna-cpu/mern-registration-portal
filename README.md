@@ -156,5 +156,4 @@ This project is licensed under the [ISC License](LICENSE).
 ### 👨‍💻 Author
 
 **Murali Krishna**
-- GitHub: [@your-username](https://github.com/your-username)
-- LinkedIn: [Your Profile](https://linkedin.com)
+
